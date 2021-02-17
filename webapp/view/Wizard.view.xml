@@ -1,0 +1,95 @@
+<mvc:View
+    controllerName="wizard.controller.Wizard"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+
+						<Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+								complete="wizardCompletedHandler">
+
+							<!-- Step 1 -->
+							<WizardStep id="ProductTypeStep"
+										title="Product Type"
+										validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom"
+										text="Lorem ipsum dolor sit, amet consectetur adipisicing elit.."
+										showIcon="true"/>
+								<Text class="sapUiSmallMarginBottom"
+										text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium fugiat eaque aspernatur quaerat, at ex!"/>
+								<HBox
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+								</HBox>
+							</WizardStep>
+
+							<!-- Step 2 -->
+							<WizardStep id="ProductInfoStep"
+										validated="true"
+										title="Product Information"
+										activate="additionalInfoValidation">
+								<form:SimpleForm
+										editable="true">
+									<Label text="Manufacturer"/>
+									<Select selectedKey="{/productManufacturer}">
+										<core:Item key="Apple" text="Apple"/>
+										<core:Item key="Microsoft" text="Microsoft"/>
+										<core:Item key="Google" text="Google"/>
+										<core:Item key="Sony" text="Sony"/>
+										<core:Item key="Samsung" text="Samsung"/>
+										<core:Item key="Logitech" text="Logitech"/>
+									</Select>
+									<Label text="Description"/>
+									<TextArea value="{/productDescription}" rows="8"/>
+								</form:SimpleForm>
+							</WizardStep>
+
+							<!-- Step 3 -->
+							<WizardStep id="OptionalInfoStep"
+								validated="true"
+								activate="optionalStepActivation"
+								title="Optional Information">
+								<form:SimpleForm
+										editable="true">
+									<Label text="Cover photo"/>
+									<u:FileUploader
+											width="100%"
+											tooltip="Upload product cover photo to the local server"
+											style="Emphasized"
+											placeholder="Choose a file for Upload..."/>
+									<Label text="Manufacturing date"/>
+									<DatePicker
+											id="DP3"
+											displayFormat="short"
+											value="{/manufacturingDate}"/>
+									<Label text="Availability"/>
+									<SegmentedButton selectedKey="{/availabilityType}">
+										<items>
+											<SegmentedButtonItem key="In store" text="In store"/>
+											<SegmentedButtonItem key="In depot" text="In depot"/>
+											<SegmentedButtonItem key="In repository" text="In repository"/>
+											<SegmentedButtonItem key="Out of stock" text="Out of stock"/>
+										</items>
+									</SegmentedButton>
+
+								</form:SimpleForm>
+							</WizardStep>
+						</Wizard>
+
+
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
