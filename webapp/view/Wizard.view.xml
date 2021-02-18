@@ -19,13 +19,13 @@
 								complete="onSendButtonPress">
 
 							<!-- Step 1 -->
-							<WizardStep id="ProductTypeStep"
+							<WizardStep id="Step1"
 										title="Product Type"
 										validated="true">
 								<MessageStrip class="sapUiSmallMarginBottom"
 										text="Lorem ipsum dolor sit, amet consectetur adipisicing elit.."
 										showIcon="true"/>
-								<Text class="sapUiSmallMarginBottom"
+								<Label class="sapUiSmallMarginBottom"
 										text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium fugiat eaque aspernatur quaerat, at ex!"/>
 								<HBox
 										alignItems="Center"
@@ -35,14 +35,14 @@
 							</WizardStep>
 
 							<!-- Step 2 -->
-							<WizardStep id="ProductInfoStep"
-										validated="true"
+							<WizardStep id="Step2"
+										validated="false"
 										title="Product Information"
 										activate="additionalInfoValidation"
 										complete="onCompleteStep2">
 								<form:SimpleForm
 										editable="true">
-									<Text text="Manufacturer"/>
+									<Label text="Manufacturer"/>
 									<Select selectedKey="{State>/productManufacturer}">
 										<core:Item key="Apple" text="Apple"/>
 										<core:Item key="Microsoft" text="Microsoft"/>
@@ -51,31 +51,31 @@
 										<core:Item key="Samsung" text="Samsung"/>
 										<core:Item key="Logitech" text="Logitech"/>
 									</Select>
-									<Text text="Description"/>
-									<TextArea value="{State>/productDescription}" rows="8"/>
+									<Label text="Description" />
+									<TextArea change="onDescriptionChange" required="true" value="{State>/productDescription}" rows="8"/>
 								</form:SimpleForm>
 							</WizardStep>
 
 							<!-- Step 3 -->
-							<WizardStep id="OptionalInfoStep"
+							<WizardStep id="Step3"
 								validated="true"
 								activate="optionalStepActivation"
 								title="Optional Information"
 								complete="onCompleteStep3">
 								<form:SimpleForm
 										editable="true">
-									<Text text="Cover photo"/>
+									<Label text="Cover photo"/>
 									<u:FileUploader
 											width="100%"
 											tooltip="Upload product cover photo to the local server"
 											style="Emphasized"
 											placeholder="Choose a file for Upload..."/>
-									<Text text="Manufacturing date"/>
+									<Label text="Manufacturing date"/>
 									<DatePicker
 											id="DP3"
 											displayFormat="short"
 											value="{State>/manufacturingDate}"/>
-									<Text text="Availability"/>
+									<Label text="Availability"/>
 									<SegmentedButton selectedKey="{State>/availabilityType}">
 										<items>
 											<SegmentedButtonItem key="In store" text="In store"/>
