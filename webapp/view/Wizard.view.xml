@@ -6,8 +6,8 @@
 
 	xmlns:core="sap.ui.core"
 	xmlns:form="sap.ui.layout.form"
-	xmlns:u="sap.ui.unified"
->
+	xmlns:u="sap.ui.unified">
+
 	<Shell id="shell">
 		<App id="app">
 			<pages>
@@ -15,7 +15,8 @@
 					<content>
 
 						<Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
-								complete="wizardCompletedHandler">
+								finishButtonText="Send"
+								complete="onSendButtonPress">
 
 							<!-- Step 1 -->
 							<WizardStep id="ProductTypeStep"
@@ -37,11 +38,12 @@
 							<WizardStep id="ProductInfoStep"
 										validated="true"
 										title="Product Information"
-										activate="additionalInfoValidation">
+										activate="additionalInfoValidation"
+										complete="onCompleteStep2">
 								<form:SimpleForm
 										editable="true">
-									<Label text="Manufacturer"/>
-									<Select selectedKey="{/productManufacturer}">
+									<Text text="Manufacturer"/>
+									<Select selectedKey="{State>/productManufacturer}">
 										<core:Item key="Apple" text="Apple"/>
 										<core:Item key="Microsoft" text="Microsoft"/>
 										<core:Item key="Google" text="Google"/>
@@ -49,8 +51,8 @@
 										<core:Item key="Samsung" text="Samsung"/>
 										<core:Item key="Logitech" text="Logitech"/>
 									</Select>
-									<Label text="Description"/>
-									<TextArea value="{/productDescription}" rows="8"/>
+									<Text text="Description"/>
+									<TextArea value="{State>/productDescription}" rows="8"/>
 								</form:SimpleForm>
 							</WizardStep>
 
@@ -58,22 +60,23 @@
 							<WizardStep id="OptionalInfoStep"
 								validated="true"
 								activate="optionalStepActivation"
-								title="Optional Information">
+								title="Optional Information"
+								complete="onCompleteStep3">
 								<form:SimpleForm
 										editable="true">
-									<Label text="Cover photo"/>
+									<Text text="Cover photo"/>
 									<u:FileUploader
 											width="100%"
 											tooltip="Upload product cover photo to the local server"
 											style="Emphasized"
 											placeholder="Choose a file for Upload..."/>
-									<Label text="Manufacturing date"/>
+									<Text text="Manufacturing date"/>
 									<DatePicker
 											id="DP3"
 											displayFormat="short"
-											value="{/manufacturingDate}"/>
-									<Label text="Availability"/>
-									<SegmentedButton selectedKey="{/availabilityType}">
+											value="{State>/manufacturingDate}"/>
+									<Text text="Availability"/>
+									<SegmentedButton selectedKey="{State>/availabilityType}">
 										<items>
 											<SegmentedButtonItem key="In store" text="In store"/>
 											<SegmentedButtonItem key="In depot" text="In depot"/>

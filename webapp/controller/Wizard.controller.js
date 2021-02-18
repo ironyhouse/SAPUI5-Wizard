@@ -8,7 +8,21 @@ sap.ui.define(
 
     return Controller.extend("wizard.controller.Wizard", {
       onInit: function () {
-        console.log(this.getView().getModel("device"));
+
+		// Finish Button text
+		this.getView().byId("CreateProductWizard").setFinishButtonText("Send (setFinishButtonText)")
+      },
+
+	  onSendButtonPress: function () {
+		console.log(this.getView().getModel("State").getProperty("/"));
+      },
+
+	  onCompleteStep2: function () {
+		console.log("Complete Step 2");
+      },
+
+	  onCompleteStep3: function () {
+		console.log("Complete Step 3");
       },
     });
   }

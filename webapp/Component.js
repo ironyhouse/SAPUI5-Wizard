@@ -1,8 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
-	"sap/ui/Device",
-	"wizard/model/models"
-], function (UIComponent, Device, models) {
+	"sap/ui/Device"
+], function (UIComponent, Device) {
 	"use strict";
 
 	return UIComponent.extend("wizard.Component", {
@@ -22,9 +21,6 @@ sap.ui.define([
 
 			// enable routing
 			this.getRouter().initialize();
-
-			// set the device model
-			// this.setModel(models.createDeviceModel(), "device");
 		}
 	});
 });
